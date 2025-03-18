@@ -48,4 +48,8 @@ class Player(Turtle):
             self.setx(self.xcor() - PLAYER_MOV_UNIT)
 
     def reached_top(self):
+        """Returns whether the player has reached the top row
+        Returns:
+            bool: True if the player has reached the top row, False otherwise
+        """
         return self.ycor() >= GRID_SIZE - ROW_HEIGHT/2

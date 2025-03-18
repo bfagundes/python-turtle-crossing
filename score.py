@@ -1,7 +1,4 @@
 from turtle import Turtle
-from config import (
-    GRID_SIZE
-)
 
 class Score: 
     def __init__(self):
@@ -20,6 +17,7 @@ class Score:
         self.score_display.write(f"Level {self.score}", align="center", font=("Courier", 16, "bold"))
 
     def update_score(self):
+        """Increases the game score by one."""
         self.score += 1
         self.update_score_display()
 

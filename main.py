@@ -36,6 +36,7 @@ def level_up(screen, player, score, game):
     Args:
         screen (Screen): The screen object from the Turtle library
         player (Player): The player object
+        score (Score): The score object
         game (Game): The game object
     """
     player.reset_position()
@@ -46,8 +47,10 @@ def game_loop(screen, player, score, game):
     Args:
         screen (Screen): The screen object from the Turtle library
         player (Player): The player object
+        score (Score): The score object
         game (Game): The game object
     """
+    game.update_obstacles()
 
     if player.reached_top():
         print(f"The player has reached the top!")
