@@ -1,7 +1,7 @@
 from turtle import Turtle
 from config import (
-    GRID_SIZE,
-    ROW_HEIGHT
+    GRID_SIZE, ROW_HEIGHT,
+    PLAYER_MOV_UNIT
 )
 
 class Player(Turtle):
@@ -27,19 +27,19 @@ class Player(Turtle):
     def move_up(self):
         """Moves the Player UP"""
         if self.ycor() < GRID_SIZE - ROW_HEIGHT/2:
-            self.sety(self.ycor() + ROW_HEIGHT)
+            self.sety(self.ycor() + PLAYER_MOV_UNIT)
 
     def move_down(self):
         """Moves the Player DOWN"""
         if self.ycor() > -GRID_SIZE + ROW_HEIGHT/2:
-            self.sety(self.ycor() - ROW_HEIGHT)
+            self.sety(self.ycor() - PLAYER_MOV_UNIT)
 
     def move_right(self):
         """Moves the Player RIGHT"""
         if self.xcor() < GRID_SIZE - ROW_HEIGHT:
-            self.setx(self.xcor() + ROW_HEIGHT)
+            self.setx(self.xcor() + PLAYER_MOV_UNIT)
 
     def move_left(self):
         """Moves the Player LEFT"""
         if self.xcor() > -GRID_SIZE + ROW_HEIGHT/2:
-            self.setx(self.xcor() - ROW_HEIGHT)
+            self.setx(self.xcor() - PLAYER_MOV_UNIT)

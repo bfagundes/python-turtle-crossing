@@ -2,11 +2,50 @@ import sys, os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import unittest
+from player import Player
+from config import (
+    GRID_SIZE, ROW_HEIGHT,
+    PLAYER_MOV_UNIT
+)
 
 class TestPlayer(unittest.TestCase):
     def setUp(self):
         """"Set up the test environment before each test"""
-        pass
+        self.player = Player()
+
+        # Moving the player to the middle of the screen to avoid hitting the screen borders
+        self.player.goto(0,0)
+
+    def test_move_up(self):
+        """Test the Player movement up"""
+        expected_y = self.player.ycor() + PLAYER_MOV_UNIT
+        self.player.move_up()
+        self.assertEqual(self.player.ycor(), expected_y, f"Player failed to move UP correctly.")
+
+    def test_move_down(self):
+        """Test the Player movement down"""
+        expected_y = self.player.ycor() - PLAYER_MOV_UNIT
+        self.player.move_down()
+        self.assertEqual(self.player.ycor(), expected_y, f"Player failed to move DOWN correctly.")
+
+    def test_move_left(self):
+        """Test the Player movement left"""
+        expected_x = self.player.xcor() - PLAYER_MOV_UNIT
+        self.player.move_left()
+        self.assertEqual(self.player.xcor(), expected_x, f"Player failed to move LEFT correctly.")
+
+    def test_move_right(self):
+        """Test the Player movement right"""
+        expected_x = self.player.xcor() + PLAYER_MOV_UNIT
+        self.player.move_right()
+        self.assertEqual(self.player.xcor(), expected_x, f"Player failed to move RIGHT correctly.")
+
+    def test_reset_position(self):
+        """Test the Player position reset"""
+        expected_position = (10, -GRID_SIZE + ROW_HEIGHT/2)
+        self.player.goto(0,0)
+        self.player.reset_position()
+        self.assertEqual((self.player.xcor(), self.player.ycor()), expected_position, f"Player failed to reset to initial position correctly.")
 
     def tearDown(self):
         """Tear down after each test"""

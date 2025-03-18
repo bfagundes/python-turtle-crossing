@@ -5,3 +5,4 @@ GRID_SIZE = SCREEN_WIDTH // 2
 
 # Gameplay settings
 ROW_HEIGHT = 30
+PLAYER_MOV_UNIT = 30
