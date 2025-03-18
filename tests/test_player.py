@@ -13,9 +13,6 @@ class TestPlayer(unittest.TestCase):
         """"Set up the test environment before each test"""
         self.player = Player()
 
-        # Moving the player to the middle of the screen to avoid hitting the screen borders
-        self.player.goto(0,0)
-
     def test_move_up(self):
         """Test the Player movement up"""
         expected_y = self.player.ycor() + PLAYER_MOV_UNIT
@@ -24,6 +21,7 @@ class TestPlayer(unittest.TestCase):
 
     def test_move_down(self):
         """Test the Player movement down"""
+        self.player.goto(0,0)
         expected_y = self.player.ycor() - PLAYER_MOV_UNIT
         self.player.move_down()
         self.assertEqual(self.player.ycor(), expected_y, f"Player failed to move DOWN correctly.")
@@ -49,28 +47,28 @@ class TestPlayer(unittest.TestCase):
 
     def test_boundaries_up(self):
         """Test player bounds vs the upper wall"""
-        expected_y = 285
+        expected_y = GRID_SIZE - self.player.wall_offset
         self.player.sety(expected_y)
         self.player.move_up()
         self.assertEqual(self.player.ycor(), expected_y, f"Player went out of bounds on the upper wall")
 
     def test_boundaries_down(self):
         """Test player bounds vs the lower wall"""
-        expected_y = -285
+        expected_y = -GRID_SIZE + self.player.wall_offset
         self.player.sety(expected_y)
         self.player.move_down()
         self.assertEqual(self.player.ycor(), expected_y, f"Player went out of bounds on the lower wall")
 
     def test_boundaries_right(self):
         """Test player bounds vs the right wall"""
-        expected_x = 285
+        expected_x = GRID_SIZE - self.player.wall_offset
         self.player.setx(expected_x)
         self.player.move_right()
         self.assertEqual(self.player.xcor(), expected_x, f"Player went out of bounds on the right wall")
 
     def test_boundaries_down(self):
         """Test player bounds vs the left wall"""
-        expected_x = -285
+        expected_x = -GRID_SIZE + self.player.wall_offset
         self.player.setx(expected_x)
         self.player.move_left()
         self.assertEqual(self.player.xcor(), expected_x, f"Player went out of bounds on the left wall")

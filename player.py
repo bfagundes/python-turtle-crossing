@@ -17,12 +17,15 @@ class Player(Turtle):
         self.setheading(90)
         self.size = 20
 
+        # Offset from the walls
+        self.wall_offset = 15
+
         # Sets the initial position
         self.reset_position()
 
     def reset_position(self):
         """Resets the player position to the bottom of the screen."""
-        self.goto(15, -GRID_SIZE + ROW_HEIGHT/2)
+        self.goto(self.wall_offset, -GRID_SIZE + ROW_HEIGHT/2)
 
     def move_up(self):
         """Moves the Player UP"""
