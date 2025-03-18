@@ -1,6 +1,7 @@
 from turtle import Screen
 from player import Player
 from score import Score
+from game import Game
 from config import(
     SCREEN_WIDTH, SCREEN_HEIGHT, GRID_SIZE
 )
@@ -30,7 +31,7 @@ def setup_controls(screen, player):
     screen.onkey(lambda: player.move_left(), "Left")
     screen.onkey(lambda: player.move_right(), "Right")
 
-def level_up(screen, player, score):
+def level_up(screen, player, score, game):
     """Prepares the next level: Resets player position and increases the game speed.
     Args:
         screen (Screen): The screen object from the Turtle library
@@ -38,9 +39,9 @@ def level_up(screen, player, score):
         game (Game): The game object
     """
     player.reset_position()
-    game_loop(screen, player, score)
+    game_loop(screen, player, score, game)
 
-def game_loop(screen, player, score):
+def game_loop(screen, player, score, game):
     """Handles the game loop and updates the screen
     Args:
         screen (Screen): The screen object from the Turtle library
@@ -54,7 +55,7 @@ def game_loop(screen, player, score):
         screen.update()
 
         # Waits before starting the next level
-        screen.ontimer(lambda: level_up(screen, player, score), 1000)
+        screen.ontimer(lambda: level_up(screen, player, score, game), 1000)
         return
 
     else:
@@ -62,7 +63,7 @@ def game_loop(screen, player, score):
 
     # Schedule the next screen update.
     # For reference, 1000ms = 1 second
-    screen.ontimer(lambda: game_loop(screen, player, score), 100)
+    screen.ontimer(lambda: game_loop(screen, player, score, game), 100)
 
 def main():
     # Sets up the game window
@@ -71,12 +72,13 @@ def main():
     # Initializes the game objects
     player = Player()
     score = Score()
+    game = Game()
 
     # Binds the keyboard controls
     setup_controls(screen, player)
     
     # Starts the game loop
-    game_loop(screen, player, score)
+    game_loop(screen, player, score, game)
     screen.mainloop()
 
 if __name__ == "__main__":

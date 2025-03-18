@@ -9,5 +9,4 @@ class Obstacle(Turtle):
             lane (int): The number of the lane where the obstacle spawns"""
         super().__init__()
         
-        
         self.lane = lane
