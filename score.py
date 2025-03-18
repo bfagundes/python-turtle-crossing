@@ -3,7 +3,7 @@ from config import (
     GRID_SIZE
 )
 
-class Game: 
+class Score: 
     def __init__(self):
         """Initializes the game, with score tracking"""
         self.score = 0
