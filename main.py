@@ -17,6 +17,18 @@ def setup_game_window():
 
     return screen
 
+def setup_controls(screen, player):
+    """Binds keyboard controls to the player object
+    Args:
+        screen (Screen):  The screen object from the Turtle library
+        player (Player): The player object
+    """
+    screen.listen()
+    screen.onkey(lambda: player.move_up(), "Up")
+    screen.onkey(lambda: player.move_down(), "Down")
+    screen.onkey(lambda: player.move_left(), "Left")
+    screen.onkey(lambda: player.move_right(), "Right")
+
 def game_loop(screen, player):
     """Handles the game loop and updates the screen
     Args:
@@ -35,6 +47,9 @@ def main():
 
     # Initializes the game objects
     player = Player()
+
+    # Binds the keyboard controls
+    setup_controls(screen, player)
     
     # Starts the game loop
     game_loop(screen, player)
