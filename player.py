@@ -46,3 +46,6 @@ class Player(Turtle):
         """Moves the Player LEFT"""
         if self.xcor() > -GRID_SIZE + ROW_HEIGHT/2:
             self.setx(self.xcor() - PLAYER_MOV_UNIT)
+
+    def reached_top(self):
+        return self.ycor() >= GRID_SIZE - ROW_HEIGHT/2

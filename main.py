@@ -29,13 +29,29 @@ def setup_controls(screen, player):
     screen.onkey(lambda: player.move_left(), "Left")
     screen.onkey(lambda: player.move_right(), "Right")
 
+def level_up(screen, player):
+    player.reset_position()
+    game_loop(screen, player)
+
 def game_loop(screen, player):
     """Handles the game loop and updates the screen
     Args:
         screen (Screen): The screen object from the Turtle library
         player (Player): The player object
     """
-    screen.update()
+
+    if player.reached_top():
+        print(f"The player has reached the top!")
+        # Increment Score
+        # Increase obstacles speed
+        screen.update()
+
+        # Waits before starting the next level
+        screen.ontimer(lambda: level_up(screen, player), 1000)
+        return
+
+    else:
+        screen.update()
 
     # Schedule the next screen update.
     # For reference, 1000ms = 1 second
