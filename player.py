@@ -22,7 +22,7 @@ class Player(Turtle):
 
     def reset_position(self):
         """Resets the player position to the bottom of the screen."""
-        self.goto(0, -GRID_SIZE + ROW_HEIGHT/2)
+        self.goto(10, -GRID_SIZE + ROW_HEIGHT/2)
 
     def move_up(self):
         """Moves the Player UP"""
@@ -36,7 +36,7 @@ class Player(Turtle):
 
     def move_right(self):
         """Moves the Player RIGHT"""
-        if self.xcor() < GRID_SIZE - ROW_HEIGHT/2:
+        if self.xcor() < GRID_SIZE - ROW_HEIGHT:
             self.setx(self.xcor() + ROW_HEIGHT)
 
     def move_left(self):
