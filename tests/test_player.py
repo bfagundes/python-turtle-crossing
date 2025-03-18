@@ -51,6 +51,7 @@ class TestPlayer(unittest.TestCase):
         self.player.sety(expected_y)
         self.player.move_up()
         self.assertEqual(self.player.ycor(), expected_y, f"Player went out of bounds on the upper wall")
+        self.assertTrue(self.player.reached_top(), f"Player has reached the top is set to False incorrectly")
 
     def test_boundaries_down(self):
         """Test player bounds vs the lower wall"""
