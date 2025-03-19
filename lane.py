@@ -94,3 +94,18 @@ class Lane():
         """Increases the lane speed"""
         for obstacle in self.obstacles:
             obstacle.increase_speed()
+
+    def detect_collision(self, player):
+        """Detects a collision between the obstacles in the lane vs the player
+        Args:
+            player (Player): The player object
+        Returns
+            bool: True if a collision is detected, False otherwise
+        """
+        for obstacle in self.obstacles:
+            collision = abs(player.xcor() - obstacle.xcor()) < (player.size/2 + obstacle.half_width)
+
+            if collision:
+                return True
+
+        return False

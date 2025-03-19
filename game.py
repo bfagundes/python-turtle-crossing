@@ -82,3 +82,12 @@ class Game():
         """Increases the game dificulty by increasing the obstacles speed and the obstacle spawn rate"""
         self.increase_speed()
         self.increase_spawn_rate()
+
+    def detect_collision(self, player):
+        """Detects collisions on the specified lane
+        Args:
+            player (Player): The player object
+        Returns:
+            bool: True if a collision was detected, False otherwise
+        """
+        return self.lanes[player.get_current_lane()].detect_colision(player)

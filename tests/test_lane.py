@@ -3,6 +3,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 
 import unittest
 from lane import Lane
+from player import Player
 from config import (
     GRID_SIZE,
     OBSTACLE_MOV_UNIT
@@ -47,6 +48,33 @@ class TestLane(unittest.TestCase):
         self.lane.spawn_obstacle()
         self.lane.despawn_obstacles()
         self.assertEqual(len(self.lane.obstacles), 1, f"Failed to despawn an obstacle")
+
+    def test_collisions(self):
+        """Test whether the player vs obstacle collisions are detected correctly"""
+        # Creating a player
+        player = Player()
+        player.move_up()
+
+        # Spawning an obstacle and moving it closer to the player
+        self.lane.spawn_obstacle()
+        self.lane.obstacles[0].lane = 1
+
+        with self.subTest("Obstacle and player do not collide"):
+            self.assertFalse(self.lane.detect_collision(player), f"Collision was detected when it should not")
+
+        with self.subTest("Obstacle and player at the same X Coordinate"):
+            self.lane.obstacles[0].setx(player.xcor())
+            self.assertTrue(self.lane.detect_collision(player), f"Collision was not detected on the same X coord")
+
+        with self.subTest("Obstacle and player at the offset limit on the X Coordinate (Not colliding)"):
+            offset = player.size/2 + self.lane.obstacles[0].half_width
+            self.lane.obstacles[0].setx(player.xcor() + offset)
+            self.assertFalse(self.lane.detect_collision(player), f"Collision was not detected on the offset limit")
+
+        with self.subTest("Obstacle and player at the offset limit on the X Coordinate (Colliding)"):
+            offset = player.size/2 + self.lane.obstacles[0].half_width
+            self.lane.obstacles[0].setx(player.xcor() + offset -1)
+            self.assertTrue(self.lane.detect_collision(player), f"Collision was not detected on the offset limit")
 
     def tearDown(self):
         """Tear down after each test"""

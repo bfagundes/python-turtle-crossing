@@ -52,6 +52,8 @@ def game_loop(screen, player, score, game):
         game (Game): The game object
     """
     game.update_obstacles()
+    if game.detect_collision(player):
+        print(f"Collision detected!")
 
     if player.reached_top():
         print(f"The player has reached the top!")

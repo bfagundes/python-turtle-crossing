@@ -64,13 +64,3 @@ class Player(Turtle):
             int: The player's current lane
         """
         return self.current_lane
-        
-    def collided(self, obstacle):
-        """Detects if the player has collided with an obstacle
-        Args:
-            obstacle (Obstacle): An Obstacle object for the check.
-        Returns:
-            bool: True if the player has collided with the obstacle, False otherwise
-        """
-        collision = abs(self.xcor() - obstacle.xcor()) < (self.sie/2 + obstacle.half_width)
-        return collision
