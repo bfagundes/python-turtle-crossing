@@ -2,12 +2,12 @@ from turtle import Screen
 from player import Player
 from score import Score
 from game import Game
-from config import(
+from config import (
     SCREEN_WIDTH, SCREEN_HEIGHT, GRID_SIZE
 )
 
 def setup_game_window():
-    """Setups the game window"""
+    """Sets up the game window"""
     screen = Screen()
     screen.title("Turtle Crossing!")
     screen.setup(width = SCREEN_WIDTH, height = SCREEN_HEIGHT)
@@ -43,6 +43,10 @@ def level_up(screen, player, score, game):
     game.level_up()
     game_loop(screen, player, score, game)
 
+def game_over(screen, player, score, game):
+    score.display_game_over()
+    screen.update()
+
 def game_loop(screen, player, score, game):
     """Handles the game loop and updates the screen
     Args:
@@ -52,9 +56,14 @@ def game_loop(screen, player, score, game):
         game (Game): The game object
     """
     game.update_obstacles()
+    
+    # Handles a collision between player and obstacle
     if game.detect_collision(player):
         print(f"Collision detected!")
+        screen.ontimer(lambda: game_over(screen, player, score, game), 1000)
+        return
 
+    # Handles the player reaching the top
     if player.reached_top():
         print(f"The player has reached the top!")
         score.update_score()
@@ -64,8 +73,7 @@ def game_loop(screen, player, score, game):
         screen.ontimer(lambda: level_up(screen, player, score, game), 1000)
         return
 
-    else:
-        screen.update()
+    screen.update()
 
     # Schedule the next screen update.
     # For reference, 1000ms = 1 second

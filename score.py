@@ -1,4 +1,5 @@
 from turtle import Turtle
+from config import GRID_SIZE
 
 class Score: 
     def __init__(self):
@@ -23,5 +24,5 @@ class Score:
 
     def display_game_over(self):
         """Displays the game-over message below the score."""
-        self.score_display.goto(0, -100)
+        self.score_display.goto(0, 270)
         self.score_display.write(f"Game Over!", align="center", font=("Courier", 24, "bold"))
