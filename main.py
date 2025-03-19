@@ -30,6 +30,7 @@ def setup_controls(screen, player):
     screen.onkey(lambda: player.move_down(), "Down")
     screen.onkey(lambda: player.move_left(), "Left")
     screen.onkey(lambda: player.move_right(), "Right")
+    screen.onkey(lambda: restart_game(screen), "r")
 
 def level_up(screen, player, score, game):
     """Prepares the next level: Resets player position and increases the game speed.
@@ -42,6 +43,10 @@ def level_up(screen, player, score, game):
     player.reset_position()
     game.level_up()
     game_loop(screen, player, score, game)
+
+def restart_game(screen):
+    screen.clearscreen()
+    main()
 
 def game_over(screen, player, score, game):
     score.display_game_over()
