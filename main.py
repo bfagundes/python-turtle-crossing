@@ -60,6 +60,7 @@ def game_loop(screen, player, score, game):
     # Handles a collision between player and obstacle
     if game.detect_collision(player):
         print(f"Collision detected!")
+        screen.update()
         screen.ontimer(lambda: game_over(screen, player, score, game), 1000)
         return
 

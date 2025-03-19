@@ -68,26 +68,19 @@ class Lane():
 
     def despawn_obstacles(self):
         """Despawns the obstacles that are past the left wall"""
-
         if not self.obstacles:
             return
-    
-        try:
-            # Finds the lefmost obstacle
-            leftmost_obstacle = min(self.obstacles, key=lambda obs: obs.xcor())
 
-            # Finds the rightmost xcor for this obstacle
-            xcor = leftmost_obstacle.xcor() + leftmost_obstacle.half_width
+        for obstacle in self.obstacles:
 
-            # Checks the distance from left wall
-            if xcor < -GRID_SIZE:
-
-                # Removes the obstacle
-                self.obstacles.remove(leftmost_obstacle)
-        
-        except ValueError:
-            # Happens if the obstacles list becomes empty between checkings 
-            pass
+            # If the obstacle is past the left wall
+            if obstacle.xcor() + obstacle.half_width < -GRID_SIZE:
+                # Remove from the list
+                self.obstacles.remove(obstacle)
+                # Actually hide it and delete it from memory
+                obstacle.hideturtle()
+                obstacle.clear()
+                del obstacle
 
     def move_obstacles(self):
         """Moves all the obstacles"""
