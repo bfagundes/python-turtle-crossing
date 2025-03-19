@@ -34,7 +34,7 @@ class Game():
         """Spawns a new obstacle into a random lane"""
 
         # Checks whether we should spawn a new obstacle based on the Spawn Rate
-        if random.random() > self.spawn_rate:
+        if random.random() <= self.spawn_rate:
             return
 
         selected_lane = -1
