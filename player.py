@@ -21,23 +21,27 @@ class Player(Turtle):
         # Offset from the walls
         self.wall_offset = 15
 
+        # x Coordinates from start and end of the obstacle
+        self.boundary_xmin = -GRID_SIZE + ROW_HEIGHT / 2
+        self.boundary_xmax = GRID_SIZE - ROW_HEIGHT / 2
+
         # Sets the initial position
         self.reset_position()
 
     def reset_position(self):
         """Resets the player position to the bottom of the screen."""
-        self.goto(self.wall_offset, -GRID_SIZE + ROW_HEIGHT/2)
+        self.goto(self.wall_offset, self.boundary_xmin)
         self.current_lane = 0
 
     def move_up(self):
         """Moves the Player UP"""
-        if self.ycor() < GRID_SIZE - ROW_HEIGHT/2:
+        if self.ycor() < self.boundary_xmax:
             self.sety(self.ycor() + PLAYER_MOV_UNIT)
             self.current_lane += 1
 
     def move_down(self):
         """Moves the Player DOWN"""
-        if self.ycor() > -GRID_SIZE + ROW_HEIGHT/2:
+        if self.ycor() > self.boundary_xmin:
             self.sety(self.ycor() - PLAYER_MOV_UNIT)
             self.current_lane -= 1
 
@@ -48,7 +52,7 @@ class Player(Turtle):
 
     def move_left(self):
         """Moves the Player LEFT"""
-        if self.xcor() > -GRID_SIZE + ROW_HEIGHT/2:
+        if self.xcor() > self.boundary_xmin:
             self.setx(self.xcor() - PLAYER_MOV_UNIT)
 
     def reached_top(self):
@@ -56,7 +60,7 @@ class Player(Turtle):
         Returns:
             bool: True if the player has reached the top row, False otherwise
         """
-        return self.ycor() >= GRID_SIZE - ROW_HEIGHT/2
+        return self.ycor() >= self.boundary_xmax
     
     def get_current_lane(self):
         """Returns the player current lane

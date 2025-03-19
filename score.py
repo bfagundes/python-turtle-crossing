@@ -14,7 +14,8 @@ class Score:
     def update_score_display(self):
         """Updates the score display on the screen."""
         self.score_display.clear()
-        self.score_display.goto(-255, 280)
+        #self.score_display.goto(-255, 280)
+        self.score_display.goto(-GRID_SIZE*0.8, GRID_SIZE*0.9)
         self.score_display.write(f"Level {self.score}", align="center", font=("Courier", 16, "bold"))
 
     def update_score(self):
@@ -24,5 +25,5 @@ class Score:
 
     def display_game_over(self):
         """Displays the game-over message below the score."""
-        self.score_display.goto(0, 270)
+        self.score_display.goto(0, GRID_SIZE*0.9)
         self.score_display.write(f"Game Over!", align="center", font=("Courier", 24, "bold"))
