@@ -107,7 +107,7 @@ class Lane():
             player (Player): The player object
         Returns
             bool: True if a collision is detected, False otherwise
-        """
+        """        
         for obstacle in self.obstacles:
             collision = abs(player.xcor() - obstacle.xcor()) < (player.size/2 + obstacle.half_width)
 

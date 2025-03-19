@@ -26,7 +26,7 @@ class Game():
     def init_lanes(self):
         """Initializes the list of lanes, which will contain the obstacles"""
         for i in range(self.num_lanes):
-            lane = Lane(i+1, self.lane_y)
+            lane = Lane(i, self.lane_y)
             self.lanes.append(lane)
             self.lane_y += ROW_HEIGHT
 
@@ -90,4 +90,6 @@ class Game():
         Returns:
             bool: True if a collision was detected, False otherwise
         """
-        return self.lanes[player.get_current_lane()].detect_collision(player)
+        # Ignoring first and last row (safe rows)
+        if 0 < player.get_current_lane() < int(SCREEN_HEIGHT / ROW_HEIGHT) -1:
+            return self.lanes[player.get_current_lane() -1].detect_collision(player)
