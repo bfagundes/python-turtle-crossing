@@ -14,6 +14,7 @@ class Obstacle(Turtle):
             lane (int): The number of the lane where the obstacle spawns
             ycor (int): The Y coordinate for the obstacle
             color (string): The color for the obstacle
+            type (string): the type of obstacle. "slow", "normal" or "fast"
         """
         super().__init__()
         self.shape("square")
@@ -22,8 +23,13 @@ class Obstacle(Turtle):
         self.shapesize(stretch_len=OBSTACLE_STRETCH_WID, stretch_wid=1)
         self.half_width = (self.turtlesize()[1] * 20) / 2
 
+        # Sets the obstacle speed
         self.mov_unit = OBSTACLE_MOV_UNIT
-        self.reset_speed()
+        if self.fillcolor() == "green":
+            self.mov_unit = self.mov_unit / 2
+        
+        elif self.fillcolor() == "red":
+            self.mov_unit = self.mov_unit * 2
 
         # Obstacle attributes
         self.lane = lane

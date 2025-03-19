@@ -25,3 +25,8 @@ OBSTACLE_COLORS = ["blue", "yellow", "orange", "purple", "pink", "brown", "gray"
 WILD_OBSTACLES = False
 FAST_OBSTACLE = "Red"
 SLOW_OBSTACLE = "Green"
+
+# These combined should not exceed 1 (100%)
+# 1 - slow - fast = the rate for normal speed obstacles
+FAST_RATE = 0.1
+SLOW_RATE = 0.1

@@ -13,8 +13,21 @@ class TestObstacle(unittest.TestCase):
         self.obstacle = Obstacle(1, -255, "black")
 
     def test_initial_speed(self):
-        expected_speed = OBSTACLE_MOV_UNIT
-        self.assertEqual(self.obstacle.mov_unit, expected_speed, f"Obstacle initial speed is incorrect")
+        
+        self.normal_obst = Obstacle(1, -GRID_SIZE, "black")
+        with self.subTest("Normal speed obstacle"):
+            expected_speed = OBSTACLE_MOV_UNIT
+            self.assertEqual(self.normal_obst.mov_unit, expected_speed, f"Normal obstacle with incorrect starting speed")
+
+        self.fast_obst = Obstacle(1, -GRID_SIZE, "red")
+        with self.subTest("Fast speed obstacle"):
+            expected_speed = OBSTACLE_MOV_UNIT * 2
+            self.assertEqual(self.fast_obst.mov_unit, expected_speed, f"fast obstacle with incorrect starting speed")
+
+        self.slow_obst = Obstacle(1, -GRID_SIZE, "green")
+        with self.subTest("Slow speed obstacle"):
+            expected_speed = OBSTACLE_MOV_UNIT / 2
+            self.assertEqual(self.slow_obst.mov_unit, expected_speed, f"slow obstacle with incorrect starting speed")
 
     def test_move(self):
         """Test the obstacle movement"""

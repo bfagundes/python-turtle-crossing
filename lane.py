@@ -3,7 +3,9 @@ from obstacle import Obstacle
 from config import (
     GRID_SIZE,
     OBSTACLE_MIN_DISTANCE,
-    OBSTACLE_COLORS
+    OBSTACLE_COLORS,
+    SLOW_OBSTACLE, FAST_OBSTACLE,
+    SLOW_RATE, FAST_RATE
 )
 
 class Lane():
@@ -37,10 +39,26 @@ class Lane():
         distance = abs(GRID_SIZE - (rightmost_obstacle.xcor() + rightmost_obstacle.half_width))
 
         return distance >= OBSTACLE_MIN_DISTANCE
+    
+    def get_obstacle_color(self):
+        """Returns the obstacle color
+        Returns:
+            string: The name of the color to be set on the obstacle. Can be used directly inside turtle.color(<color>)
+        """
+        rand_number = random.random()
+
+        if 0 < rand_number < SLOW_RATE:
+            return "green"
+        
+        elif SLOW_RATE+0.01 < rand_number < SLOW_RATE+FAST_RATE:
+            return "red"
+        
+        else:
+            return random.choice(OBSTACLE_COLORS)
 
     def spawn_obstacle(self):
         """Spawns a new obstacle into the lane"""
-        color = random.choice(OBSTACLE_COLORS)
+        color = self.get_obstacle_color()
         obstacle = Obstacle(self.number, self.ycor, color)
         self.obstacles.append(obstacle)
 

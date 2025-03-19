@@ -12,6 +12,7 @@ class TestLane(unittest.TestCase):
     def setUp(self):
         """"Set up the test environment before each test"""
         self.lane = Lane(1, -255)
+        self.lane.get_obstacle_color()
 
     def test_can_spawn_empty_lane(self):
         """Test whether the can_spawn method returns the expected value whe nthe lane is empty"""
