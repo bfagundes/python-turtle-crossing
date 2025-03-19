@@ -1,7 +1,8 @@
 import random
 from lane import Lane
 from config import (
-    ROW_HEIGHT, SCREEN_HEIGHT, GRID_SIZE, OBSTACLE_SPAWN_RATE
+    ROW_HEIGHT, SCREEN_HEIGHT, GRID_SIZE, 
+    OBSTACLE_SPAWN_RATE, OBSTACLE_SPAWN_INCREASE, OBSTACLE_MAX_SPAWN_RATE
 )
 
 class Game():
@@ -20,6 +21,8 @@ class Game():
         self.lanes = []
         self.init_lanes()
 
+        self.spawn_rate = OBSTACLE_SPAWN_RATE
+
     def init_lanes(self):
         """Initializes the list of lanes, which will contain the obstacles"""
         for i in range(self.num_lanes):
@@ -31,7 +34,7 @@ class Game():
         """Spawns a new obstacle into a random lane"""
 
         # Checks whether we should spawn a new obstacle based on the Spawn Rate
-        if random.random() > OBSTACLE_SPAWN_RATE:
+        if random.random() > self.spawn_rate:
             return
 
         selected_lane = -1
@@ -62,3 +65,20 @@ class Game():
         self.spawn_obstacle()
         self.move_obstacles()
         self.despawn_obstacles()
+
+    def increase_speed(self):
+        """Increases the game speed"""
+        for lane in self.lanes:
+            lane.increase_speed()
+
+    def increase_spawn_rate(self):
+        """Increases the spawn rate of obstacles"""
+        new_spawn_rate = self.spawn_rate * (1 + OBSTACLE_SPAWN_INCREASE)
+        
+        if new_spawn_rate <= OBSTACLE_MAX_SPAWN_RATE:
+            self.spawn_rate = new_spawn_rate
+
+    def level_up(self):
+        """Increases the game dificulty by increasing the obstacles speed and the obstacle spawn rate"""
+        self.increase_speed()
+        self.increase_spawn_rate()

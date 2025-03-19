@@ -3,8 +3,7 @@ from obstacle import Obstacle
 from config import (
     GRID_SIZE,
     OBSTACLE_MIN_DISTANCE,
-    OBSTACLE_MOV_UNIT,
-    OBSTACLE_COLORS,
+    OBSTACLE_COLORS
 )
 
 class Lane():
@@ -71,4 +70,9 @@ class Lane():
     def move_obstacles(self):
         """Moves all the obstacles"""
         for obstacle in self.obstacles:
-            obstacle.setx(obstacle.xcor() - OBSTACLE_MOV_UNIT)
+            obstacle.move()
+
+    def increase_speed(self):
+        """Increases the lane speed"""
+        for obstacle in self.obstacles:
+            obstacle.increase_speed()

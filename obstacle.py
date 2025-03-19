@@ -1,7 +1,8 @@
 from turtle import Turtle
 from config import (
     GRID_SIZE, 
-    OBSTACLE_STRETCH_WID
+    OBSTACLE_STRETCH_WID,
+    OBSTACLE_MOV_UNIT, OBSTACLE_MOV_INCREASE
 )
 
 class Obstacle(Turtle):
@@ -21,6 +22,21 @@ class Obstacle(Turtle):
         self.shapesize(stretch_len=OBSTACLE_STRETCH_WID, stretch_wid=1)
         self.half_width = (self.turtlesize()[1] * 20) / 2
 
+        self.mov_unit = OBSTACLE_MOV_UNIT
+        self.reset_speed()
+
         # Obstacle attributes
         self.lane = lane
         self.goto(GRID_SIZE, ycor)
+
+    def move(self):
+        """Moves the obstacle"""
+        self.setx(self.xcor() - self.mov_unit)
+
+    def increase_speed(self):
+        """Increases the obstacle speed"""
+        self.mov_unit = self.mov_unit * (1 + OBSTACLE_MOV_INCREASE)
+
+    def reset_speed(self):
+        """Resets the obstacle speed to the starting speed"""
+        self.mov_unit = OBSTACLE_MOV_UNIT

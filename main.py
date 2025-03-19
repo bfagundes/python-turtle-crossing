@@ -40,6 +40,7 @@ def level_up(screen, player, score, game):
         game (Game): The game object
     """
     player.reset_position()
+    game.level_up()
     game_loop(screen, player, score, game)
 
 def game_loop(screen, player, score, game):

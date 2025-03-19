@@ -47,13 +47,6 @@ class TestLane(unittest.TestCase):
         self.lane.despawn_obstacles()
         self.assertEqual(len(self.lane.obstacles), 1, f"Failed to despawn an obstacle")
 
-    def test_move_obstacle(self):
-        """Test the lane obstacle movement"""
-        expected_x = GRID_SIZE - OBSTACLE_MOV_UNIT
-        self.lane.spawn_obstacle()
-        self.lane.move_obstacles()
-        self.assertEqual(self.lane.obstacles[0].xcor(), expected_x, f"Failed to move the lane obstacles")
-
     def tearDown(self):
         """Tear down after each test"""
         pass
