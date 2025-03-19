@@ -33,10 +33,11 @@ class Game():
     def spawn_obstacle(self):
         """Spawns a new obstacle into a random lane"""
 
-        # Checks whether we should spawn a new obstacle based on the Spawn Rate
-        if random.random() <= self.spawn_rate:
+        # If the random number (0 .. 1) is bigger than spawn rate, dont spawn it.
+        if random.random() > self.spawn_rate:
             return
 
+        # Spawning a new obstacle
         selected_lane = -1
         while selected_lane < 0:
             random_lane = random.randint(0, len(self.lanes)-1)

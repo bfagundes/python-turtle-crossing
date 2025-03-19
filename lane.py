@@ -19,9 +19,7 @@ class Lane():
         """
         self.number = number
         self.ycor = ycor
-        
         self.obstacles = []
-        self.last_obstacle_pos = GRID_SIZE
 
     def can_spawn_obstacle(self):
         """Checks whether the lane can spawn a new obstacle. 
