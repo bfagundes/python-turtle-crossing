@@ -5,7 +5,8 @@ from config import (
     OBSTACLE_MIN_DISTANCE,
     OBSTACLE_COLORS,
     SLOW_OBSTACLE, FAST_OBSTACLE,
-    SLOW_RATE, FAST_RATE
+    SLOW_RATE, FAST_RATE,
+    WILD_OBSTACLES
 )
 
 class Lane():
@@ -47,14 +48,19 @@ class Lane():
         """
         rand_number = random.random()
 
-        if 0 < rand_number < SLOW_RATE:
-            return "green"
-        
-        elif SLOW_RATE+0.01 < rand_number < SLOW_RATE+FAST_RATE:
-            return "red"
+        if not WILD_OBSTACLES:
+            return random.choice(OBSTACLE_COLORS)
         
         else:
-            return random.choice(OBSTACLE_COLORS)
+
+            if 0 < rand_number < SLOW_RATE:
+                return SLOW_OBSTACLE
+            
+            elif SLOW_RATE+0.01 < rand_number < SLOW_RATE+FAST_RATE:
+                return FAST_OBSTACLE
+            
+            else:
+                return random.choice(OBSTACLE_COLORS)
 
     def spawn_obstacle(self):
         """Spawns a new obstacle into the lane"""

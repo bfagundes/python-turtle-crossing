@@ -90,4 +90,4 @@ class Game():
         Returns:
             bool: True if a collision was detected, False otherwise
         """
-        return self.lanes[player.get_current_lane()].detect_colision(player)
+        return self.lanes[player.get_current_lane()].detect_collision(player)

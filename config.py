@@ -22,9 +22,9 @@ OBSTACLE_MOV_INCREASE = 0.2
 OBSTACLE_COLORS = ["blue", "yellow", "orange", "purple", "pink", "brown", "gray", "cyan"]
 
 # When this is set to true the game has obstacles moving at different speeds
-WILD_OBSTACLES = False
-FAST_OBSTACLE = "Red"
-SLOW_OBSTACLE = "Green"
+WILD_OBSTACLES = True
+FAST_OBSTACLE = "red"
+SLOW_OBSTACLE = "green"
 
 # These combined should not exceed 1 (100%)
 # 1 - slow - fast = the rate for normal speed obstacles
