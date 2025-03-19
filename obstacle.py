@@ -2,7 +2,9 @@ from turtle import Turtle
 from config import (
     GRID_SIZE, 
     OBSTACLE_STRETCH_WID,
-    OBSTACLE_MOV_UNIT, OBSTACLE_MOV_INCREASE
+    OBSTACLE_MOV_UNIT, OBSTACLE_MOV_INCREASE,
+    FAST_OBSTACLE, SLOW_OBSTACLE,
+    FAST_OBSTACLE_MODIFIER, SLOW_OBSTACLE_MODIFIER
 )
 
 class Obstacle(Turtle):
@@ -14,7 +16,6 @@ class Obstacle(Turtle):
             lane (int): The number of the lane where the obstacle spawns
             ycor (int): The Y coordinate for the obstacle
             color (string): The color for the obstacle
-            type (string): the type of obstacle. "slow", "normal" or "fast"
         """
         super().__init__()
         self.shape("square")
@@ -25,11 +26,11 @@ class Obstacle(Turtle):
 
         # Sets the obstacle speed
         self.mov_unit = OBSTACLE_MOV_UNIT
-        if self.fillcolor() == "green":
-            self.mov_unit = self.mov_unit / 2
+        if self.fillcolor() == SLOW_OBSTACLE:
+            self.mov_unit = self.mov_unit * SLOW_OBSTACLE_MODIFIER
         
-        elif self.fillcolor() == "red":
-            self.mov_unit = self.mov_unit * 2
+        elif self.fillcolor() == FAST_OBSTACLE:
+            self.mov_unit = self.mov_unit * FAST_OBSTACLE_MODIFIER
 
         # Obstacle attributes
         self.lane = lane
