@@ -16,6 +16,7 @@ class Player(Turtle):
         self.penup()
         self.setheading(90)
         self.size = 20
+        self.current_lane = 0
 
         # Offset from the walls
         self.wall_offset = 15
@@ -26,16 +27,19 @@ class Player(Turtle):
     def reset_position(self):
         """Resets the player position to the bottom of the screen."""
         self.goto(self.wall_offset, -GRID_SIZE + ROW_HEIGHT/2)
+        self.current_lane = 0
 
     def move_up(self):
         """Moves the Player UP"""
         if self.ycor() < GRID_SIZE - ROW_HEIGHT/2:
             self.sety(self.ycor() + PLAYER_MOV_UNIT)
+            self.current_lane += 1
 
     def move_down(self):
         """Moves the Player DOWN"""
         if self.ycor() > -GRID_SIZE + ROW_HEIGHT/2:
             self.sety(self.ycor() - PLAYER_MOV_UNIT)
+            self.current_lane -= 1
 
     def move_right(self):
         """Moves the Player RIGHT"""
@@ -53,3 +57,11 @@ class Player(Turtle):
             bool: True if the player has reached the top row, False otherwise
         """
         return self.ycor() >= GRID_SIZE - ROW_HEIGHT/2
+    
+    def get_current_lane(self):
+        """Returns the player current lane
+        Returns:
+            int: The player's current lane
+        """
+        return self.current_lane
+        
