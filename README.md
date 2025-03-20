@@ -40,10 +40,10 @@ python main.py
 | R           | Restart Game |
 
 ## Features
-**Randomized Obstacles:** Obstacles move at different speeds and have different colors.  
-**Difficulty Scaling:** Obstacles move **faster** and spawn **more frequently** as you level up.  
-**Simple & Fun Mechanics:** Easy to learn, but challenging to master!  
-**Restart Option:** Press `R` to restart the game without quitting.  
+- **Randomized Obstacles:** Obstacles move at different speeds and have different colors.  
+- **Difficulty Scaling:** Obstacles move **faster** and spawn **more frequently** as you level up.  
+- **Simple & Fun Mechanics:** Easy to learn, but challenging to master!  
+- **Restart Option:** Press `R` to restart the game without quitting.  
 
 ## Contributors  
 **Bruno Fagundes** (me) - *Game Developer*  
