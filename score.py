@@ -11,6 +11,7 @@ class Score:
         self.score_display.penup()
         self.score_display.hideturtle()
         self.update_score_display()
+        self.load_high_score()
 
     def update_score_display(self):
         """Updates the score display on the screen."""
@@ -33,3 +34,23 @@ class Score:
         """Updates the high score"""
         if self.score > self.high_score:
             self.high_score = self.score
+
+            try:
+                with open(file="high_score.txt", mode="w") as file:
+                    file.write(self.high_score)
+            except IOError as e:
+                print(f"Failed to save the high score: {e}")
+
+    def load_high_score(self):
+        """Loads the saved high score from the high_score.txt file."""
+        try:
+            with open(file="high_score.txt", mode="r") as file:
+                content = file.read()
+                if len(content) == 0:
+                    self.high_score = 0
+                else:
+                    self.high_score = int(content)
+
+        except (IOError, ValueError) as e:
+            self.high_score = 0
+            print(f"Failed to load the high score: {e}")
