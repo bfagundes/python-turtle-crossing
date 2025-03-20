@@ -5,6 +5,7 @@ class Score:
     def __init__(self):
         """Initializes the game, with score tracking"""
         self.score = 0
+        self.high_score = 0
         self.score_display = Turtle()
         self.score_display.color("black")
         self.score_display.penup()
