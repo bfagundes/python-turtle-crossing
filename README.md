@@ -1,12 +1,9 @@
 # Turtle Crossing Game
-
 A simple **Turtle Crossing** game built with Python's `turtle` library.  
 The goal is to navigate the turtle safely across the screen, avoiding obstacles while the game gradually increases in difficulty.
 
 ## Screenshot  
 ![An screenshot of the Turtle Crossing Game](images/screenshot.png)
-
----
 
 ## How to Play  
 - Use the **arrow keys** to move the turtle.
@@ -14,8 +11,6 @@ The goal is to navigate the turtle safely across the screen, avoiding obstacles 
 - Reach the **top row** to level up.
 - The game **gets harder** as obstacles spawn faster and move quicker.
 - **If you collide with an obstacle, it's Game Over!**
-
----
 
 ## Installation & Running the Game
 ### **1. Clone the Repository**
@@ -35,18 +30,14 @@ python --version  # Ensure Python 3.x is installed
 python main.py
 ```
 
----
-
 ## Controls  
 | Key  | Action |
 |------|--------|
-| ⬆Up Arrow    | Move Up    |
-| ⬇Down Arrow  | Move Down  |
+| Up Arrow    | Move Up    |
+| Down Arrow  | Move Down  |
 | Left Arrow  | Move Left  |
 | Right Arrow | Move Right |
 | R           | Restart Game |
-
----
 
 ## Features
 **Randomized Obstacles:** Obstacles move at different speeds and have different colors.  
@@ -54,13 +45,9 @@ python main.py
 **Simple & Fun Mechanics:** Easy to learn, but challenging to master!  
 **Restart Option:** Press `R` to restart the game without quitting.  
 
----
-
 ## Contributors  
 **Bruno Fagundes** (me) - *Game Developer*  
 Feel free to contribute! Fork the repository and submit a pull request.  
-
----
 
 ## License  
 This project is licensed under the **MIT License**. See the `LICENSE` file for details.
