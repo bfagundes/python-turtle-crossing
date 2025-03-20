@@ -27,6 +27,14 @@ class TestScore(unittest.TestCase):
         # Check if the score increased
         self.assertEqual(self.score.score, expected_score, f"The score did not increased after the player reached the top")
 
+    def test_update_high_score(self):
+        """test whether the high score updates correctly"""
+        self.score.score = 2
+        self.score.high_score = 0
+        expected_result = self.score.score
+        self.score.update_high_score()
+        self.assertEqual(self.score.high_score, expected_result, f"High score failed to update correctly")
+
     def tearDown(self):
         """Tear down after each test"""
         pass
