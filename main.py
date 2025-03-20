@@ -50,6 +50,7 @@ def restart_game(screen):
 
 def game_over(screen, player, score, game):
     score.display_game_over()
+    score.update_high_score()
     screen.update()
 
 def game_loop(screen, player, score, game):
